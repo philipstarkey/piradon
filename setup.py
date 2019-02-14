@@ -8,7 +8,7 @@ from setuptools import setup, find_packages
 # Define the current version of the library
 # Update this before building and publishing a new version
 # see https://semver.org/ for guidelines on how to modify the version string
-VERSION = '1.0.0'
+VERSION = '1.0.1'
 
 # get directory of setup.py and the rest of the code for the library
 code_dir = os.path.abspath(os.path.dirname(__file__))
@@ -26,14 +26,6 @@ try:
         long_description = f.read()
 except Exception:
     long_description = ""
-
-with open(os.path.join(code_dir,'requirements.txt')) as f:
-    INSTALL_REQUIRES = [l.strip() for l in f.readlines() if l]
-
-# requirements for those browsing PyPI
-REQUIRES = [r.replace('>=', ' (>= ') + ')' for r in INSTALL_REQUIRES]
-REQUIRES = [r.replace('==', ' (== ') for r in REQUIRES]
-REQUIRES = [r.replace('[array]', '') for r in REQUIRES]
 
 setup(
     name='piradon',
@@ -55,7 +47,7 @@ setup(
                  'Programming Language :: Python :: 3.6',
                  'Programming Language :: Python :: 3.7',
                  'Environment :: Console',
-                 'OSI Approved :: BSD License',
+                 'License :: OSI Approved :: BSD License',
                  'Natural Language :: English',
                  'Intended Audience :: Developers',
                  'Intended Audience :: Science/Research',
@@ -64,5 +56,8 @@ setup(
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, <4',
     packages=find_packages(),
     include_package_data=True,
-    install_requires=REQUIRES,
+    install_requires=[
+        'numpy>=1.11',
+        'scipy>=0.17.0',
+    ],
 )

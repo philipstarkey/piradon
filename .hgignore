@@ -1,0 +1,5 @@
+syntax: glob
+piradon/*
+*.vscode
+dist/*
+piradon.egg-info/*
